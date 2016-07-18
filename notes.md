@@ -30,3 +30,11 @@ App layout:
  -- an error/no matching terms would be nice
 4) the returned articles should be listed, with extracts, in hte view, and include links to the relevant wikipedia pages.
 5) there should also be a button which opens a random wikipedia article in a new tab.
+
+Things I learned!!!
+1. After the return in a function, that's it, it's over. If you want to do a console log or anything - it goes BEFORE the return! You can't get anything out of it after that.
+
+2. The thing that you return is just a thing that can be used by another function. It doesn't matter what you call it or if you gave it a variable name inside the function because any other function will only see the return value not its name or its variable name. If you wanted that you would have to define a global variable outside the functions.
+
+3. You need to export the functions you are testing, and require them in your test folder!!!
+

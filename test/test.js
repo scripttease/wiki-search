@@ -1,17 +1,9 @@
-describe("array", function() {
-  it("should have two elements", function() {
-    var arr = [1, 2];
+// var main = require("../src/main.js");
+var createSearchURL = require("../src/create-search-url");
 
-    expect(arr.length).to.equal(2);
-  });
-});
+describe("createSearchURL", function() {
+  it("should replace whitespace in search string with %20", function() {
 
-describe ("createSearchURL", function() {
-  it("should convert the user-entered search terms into a space seperated url", function() {
-    var searchURL;
-    var searchTermsString = "my search terms";
-    var baseURL = "search="
-
-    expect(searchURL).to.equal("search=my%20search%20terms")
+    expect(createSearchURL("my search string")).to.equal("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&exsentences=1&explaintext&generator=search&gsrsearch=my%20search%20string");
   });
 });
