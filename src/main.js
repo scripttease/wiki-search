@@ -1,30 +1,30 @@
-document.querySelector("#inputBox").onchange = handleInput;
+var createSearchURL = require("./create-search-url");
 
-function createSearchURL(searchTerms) {
-  var searchTermsString = searchTerms.replace(/\s/g, "%20");
-  var baseURL = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&exsentences=1&explaintext&generator=search&gsrsearch=";
-  var searchURL;
-  return searchURL = baseURL + searchTermsString;
-}
-// There is a javascript function (not even a library!) that already exists that will parse search terms into URL friendly format so if your user puts in a comma, or an = etc etc this will still work - need to look this up.
+// Assign function to user input box
+document.querySelector("#inputBox").onchange = handleInput;
 
 // Get search items from user input, split to array, use in url.
 function handleInput(event) {
   var searchTerms = event.target.value;
   var url = createSearchURL(searchTerms);
-  console.log(url);
+  return fetch(url, { mode: "no-cors"})
+    .then(function(response) {
+      console.log(response.query)
+        return response.json()
+    });
   // do something with the URL here.
-}
+};
 
 
 function fetchWikiSearch(url) {
-  // var url = searchURL;
   return fetch(url)
     .then(function(response) {
+      console.log(response);
       return response.json();
-      console.log(response.json);
     });
 };
+
+handleInput(createSearchURL);
 
 function listSearchArticles() {
   fetchWikiSearch(createSearchURL)
@@ -33,7 +33,6 @@ function listSearchArticles() {
     });
 };
 
-module.exports = main;
 
 module.exports = {
   handleInput: handleInput,
